@@ -31,29 +31,9 @@ The goal of this project is to conduct data analysis and create a presentation t
 
 
 # Exploration (EDA)
-In the image below, we can see that the top highest grossing movies when compared to their production budget movies are: 
-* Avatar 
-* Titanic
-* Avengers: Infinity War
-* Star Wars Ep. VII: The Force Awakens
-* Jurassic World
-
-I decided to look at the distribution of **genres** across the **top 50** movies
-
-# Some code I used to aggregate the genres by counts
-
-```python
-genre_count = {}
-for movie in top_5_budget_gross_diff_movies:
-    movie_genres = joined_df[joined_df['movie']==movie]['genres'].values[0]
-    try:
-        for genre in movie_genres:
-            genre_count[genre] = genre_count.get(genre, 0) + 1
-    except:
-        genre_count['not_listed'] = genre_count.get('not_listed', 0) + 1
-
-genre_count
-```
+The two graphs below show the top 25 movies in terms of gross profit and the top 25 movies in terms of gross profit margin.
+I selected only the top 25 as opposed to 50 to create a less cluttered visualization for the viewer.
+The top profit margin graph excludes Deep Throat, the highest profit margin movie ever, because it was such an outlier.
 
 ![](images/profit.png)
 
@@ -80,31 +60,31 @@ After examining the top 50 movies for gross profit and gross profit margin, I fo
 
 
 # Exploration (EDA)
-In the image below, we can see that the top highest grossing movies when compared to their production budget movies are: 
-* Avatar 
-* Titanic
-* Avengers: Infinity War
-* Star Wars Ep. VII: The Force Awakens
-* Jurassic World
+The graph below shows the counts for each genre for the 500 movies with the highest gross profit margin.
+The most represented genres were:
 
-I decided to look at the distribution of **genres** across the **top 50** movies
+* Drama
+* Comedy
+* Horror
+
+I initially tried the 50 movies with highest gross profit margin, but it did not have many data points. The 500 movies with highest gross profit margin gave a lot of data points.
 
 # Some code I used to aggregate the genres by counts
 
 ```python
 genre_count = {}
-for movie in top_5_budget_gross_diff_movies:
+for movie in top_500profitp:
     movie_genres = joined_df[joined_df['movie']==movie]['genres'].values[0]
     try:
         for genre in movie_genres:
             genre_count[genre] = genre_count.get(genre, 0) + 1
     except:
-        genre_count['not_listed'] = genre_count.get('not_listed', 0) + 1
+        pass
 
 genre_count
 ```
 
-![](images/q1-barchart.png)
+![](images/genres.png)
 </details>
 
 ### Q2: Insights/Findings/Recommendations
@@ -126,31 +106,33 @@ After examining the top 500 movies for gross profit margin, I found the three mo
 
 
 # Exploration (EDA)
-In the image below, we can see that the top highest grossing movies when compared to their production budget movies are: 
-* Avatar 
-* Titanic
-* Avengers: Infinity War
-* Star Wars Ep. VII: The Force Awakens
-* Jurassic World
+The three graphs below show a comparison of the release months for movies by genre between all movies for that genre and movies that were in the 500 movies with the highest gross margin.
 
-I decided to look at the distribution of **genres** across the **top 50** movies
-
-# Some code I used to aggregate the genres by counts
+# The code below was used to group movies by genre that were in the 500 movies with the highest profit margin:
 
 ```python
-genre_count = {}
-for movie in top_5_budget_gross_diff_movies:
-    movie_genres = joined_df[joined_df['movie']==movie]['genres'].values[0]
-    try:
-        for genre in movie_genres:
-            genre_count[genre] = genre_count.get(genre, 0) + 1
-    except:
-        genre_count['not_listed'] = genre_count.get('not_listed', 0) + 1
-
-genre_count
+top500horror = joined_df.loc[(joined_df['Horror'] == 1)  & (joined_df['profit_margin'] >= 0.879158)]['month']
+top500drama = joined_df.loc[(joined_df['Drama'] == 1)  & (joined_df['profit_margin'] >= 0.879158)]['month']
+top500comedy = joined_df.loc[(joined_df['Comedy'] == 1)  & (joined_df['profit_margin'] >= 0.879158)]['month']
 ```
 
-![](images/q1-barchart.png)
+# The months for each of those groupings were then counted and put into terms that could be visualized to make our graphs. Below we see the code used to group months for horror:
+
+```python
+horror_counts = {"Jan":0, "Feb":0, "Mar":0, "Apr":0, "May":0, "Jun":0, "Jul":0, "Aug":0, "Sep":0, "Oct":0, "Nov":0, "Dec":0 }
+for month in top500horror:
+    horror_counts[month] = horror_counts.get(month, 0) + 1
+horror_count = list(horror_counts.items())
+hy = [item[1] for item in horror_count]
+hx = [item[0] for item in horror_count]
+```
+
+![](images/horror.png)
+
+![](images/drama.png)
+
+![](images/comedy.png)
+
 </details>
 
 ### Q3: Insights/Findings/Recommendations
