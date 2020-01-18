@@ -4,10 +4,6 @@
 ![](images/theme.webp)
 
 
-### Outline
-* [Goals and Overview](##goals-and-overview)
-* [Final Thoughts](#final)
-
 ## Goals and Overview
 
 In this project, I was given multiple datasets
