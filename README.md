@@ -35,7 +35,7 @@ The top profit margin graph excludes Deep Throat, the highest profit margin movi
 
 ![](images/profitmargin.png)
 
-</details>
+
 
 ### Q1: Insights/Findings/Recommendations
 
@@ -82,7 +82,7 @@ genre_count
 ```
 
 ![](images/genres.png)
-</details>
+
 
 ### Q2: Insights/Findings/Recommendations
 
