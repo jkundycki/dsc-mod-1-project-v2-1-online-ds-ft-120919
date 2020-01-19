@@ -22,18 +22,19 @@ The goal of this project is to conduct data analysis and create a presentation t
 
 ------
 
-<details><summary><span style="font-size:18pt; font-weight:bold">Question 1: Are there any noticeable trends in the data in terms of profit and profitability?</span>
+# Question 1: Are there any noticeable trends in the data in terms of profit and profitability?
 
 
 
-# Exploration (EDA)
+## Exploration (EDA)
 The two graphs below show the top 25 movies in terms of gross profit and the top 25 movies in terms of gross profit margin.
-I selected only the top 25 as opposed to 50 to create a less cluttered visualization for the viewer.
+The data analyzed actually used the top 50 movies, but the top 25 provided a visually cleaner visualization where trends can already be seen.
 The top profit margin graph excludes Deep Throat, the highest profit margin movie ever, because it was such an outlier.
 
 ![](images/profit.png)
 
 ![](images/profitmargin.png)
+
 </details>
 
 ### Q1: Insights/Findings/Recommendations
@@ -51,11 +52,11 @@ After examining the top 50 movies for gross profit and gross profit margin, I fo
 **Next Steps**
 * Explore genres to see what genres tend to have the highest profit margin
 
-<details><summary><span style="font-size:18pt; font-weight:bold">Question 2: Assuming we were to start a new movie from scratch, are there any trends that can help our movie have a high profit margin? Let's start by investigating if there are any trends for genre.</span>
+# Question 2: Assuming we were to start a new movie from scratch, are there any trends that can help our movie have a high profit margin? Let's start by investigating if there are any trends for genre.
 
 
 
-# Exploration (EDA)
+## Exploration (EDA)
 The graph below shows the counts for each genre for the 500 movies with the highest gross profit margin.
 The most represented genres were:
 
@@ -65,7 +66,7 @@ The most represented genres were:
 
 I initially tried the 50 movies with highest gross profit margin, but it did not have many data points. The 500 movies with highest gross profit margin gave a lot of data points.
 
-# Some code I used to aggregate the genres by counts
+## Some code I used to aggregate the genres by counts
 
 ```python
 genre_count = {}
@@ -97,14 +98,14 @@ After examining the top 500 movies for gross profit margin, I found the three mo
 **Next Steps**
 * Explore if there are advantageous release months for our most succesful genres in terms of top profit margin
 
-<details><summary><span style="font-size:18pt; font-weight:bold">Q3: Are there any trends for the highest profit margin movies based on genre?</span>
+# Q3: Are there any trends for the highest profit margin movies based on genre?
 
 
 
-# Exploration (EDA)
+## Exploration (EDA)
 The three graphs below show a comparison of the release months for movies by genre between all movies for that genre and movies that were in the 500 movies with the highest gross margin.
 
-# The code below was used to group movies by genre that were in the 500 movies with the highest profit margin:
+## The code below was used to group movies by genre that were in the 500 movies with the highest profit margin:
 
 ```python
 top500horror = joined_df.loc[(joined_df['Horror'] == 1)  & (joined_df['profit_margin'] >= 0.879158)]['month']
@@ -112,7 +113,7 @@ top500drama = joined_df.loc[(joined_df['Drama'] == 1)  & (joined_df['profit_marg
 top500comedy = joined_df.loc[(joined_df['Comedy'] == 1)  & (joined_df['profit_margin'] >= 0.879158)]['month']
 ```
 
-# The months for each of those groupings were then counted and put into terms that could be visualized to make our graphs. Below we see the code used to group months for horror:
+## The months for each of those groupings were then counted and put into terms that could be visualized to make our graphs. Below we see the code used to group months for horror:
 
 ```python
 horror_counts = {"Jan":0, "Feb":0, "Mar":0, "Apr":0, "May":0, "Jun":0, "Jul":0, "Aug":0, "Sep":0, "Oct":0, "Nov":0, "Dec":0 }
@@ -135,7 +136,7 @@ hx = [item[0] for item in horror_count]
 
 **Findings**
 
-After examining the release months of the top margin movie genres (Drama, Comedy, Horror) against all the movies for those same genres, I found that top profit margin horror movies tended to be released in October, top profit margin drama movies tended to be released in June and November compared to all movies of those genres. Top profit margin comedy movies tended to be released in June and July like their counterparts, but tended to trend towards those months more strongly than their counterparts.
+After examining the release months of the top margin movie genres (Drama, Comedy, Horror) against all the movies for those same genres, I found that top profit margin horror movies tended to be released in October, top profit margin drama movies tended to be released in June and November compared to all movies of those genres. Top profit margin comedy movies tended to be released in June and July, much like their counterparts, but tended to trend towards the months of June and July more strongly.
 
 **Recommendations**
 * Collect genre information for all movies
