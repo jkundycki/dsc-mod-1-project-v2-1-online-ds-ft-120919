@@ -81,7 +81,7 @@ for movie in top_500profitp:
 genre_count
 ```
 
-![](images/genres.png)
+![](images/genre.png)
 
 
 ### Q2: Insights/Findings/Recommendations
